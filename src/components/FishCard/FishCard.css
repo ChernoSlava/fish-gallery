@@ -1,0 +1,52 @@
+.FishCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    min-height: 300px;
+    max-width: 260px;
+
+    border-radius: 8px;
+    border: 1px solid gray;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+
+    padding: 5px;
+}
+
+.FishCard__header {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.FishCard__footer {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.FishCard__content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+} 
+
+.FishCard__image {
+    height: 100%;
+    width: 100%;
+}
+
+.FishCard__delete {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.FishCard__like {
+    cursor: pointer;
+}
+.FishCard__like_liked {
+    fill: red;
+}
