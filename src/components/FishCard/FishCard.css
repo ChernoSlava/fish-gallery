@@ -25,6 +25,11 @@
     display: flex;
     align-items: center;
     
+    max-width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    align-self: center;
 }
 
 .FishCard__content {
