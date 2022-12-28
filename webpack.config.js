@@ -58,7 +58,13 @@ module.exports = {
         },
         compress: true,
         hot: true, 
-        open: true
+        open: true,
+        proxy: {
+            "/api/*": {
+                target:"https://www.fishwatch.gov",
+                changeOrigin: true
+            }
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({
