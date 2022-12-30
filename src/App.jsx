@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from './App.css';
+import { Tabs } from "./components";
 import { FishCardListContainer } from "./containers";
 import { FishCardContext } from "./context";
-
+import { FishCardFavoriteContainer } from "./containers";
 function uuidv4() {
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
@@ -10,9 +11,10 @@ function uuidv4() {
 }
 
 export const App = () => {
-    const [ liked, setIsLiked ] = useState([]);
+    const [ liked, setLiked ] = useState([]);
     const [ deleted, setDeleted ] = useState([]);
-    const [ cards, setCards ] = useState([])
+    const [ cards, setCards ] = useState([]);
+    const [ currentTab, setCurrentTab ] = useState(1);
 
     useEffect(() => {
         fetch("/api/species")
@@ -29,13 +31,27 @@ export const App = () => {
     }, []) 
 
     return <FishCardContext.Provider value={{
-                items: cards.filter(card => !deleted.includes(card.id)).map(card => ({ ...card, isLiked: liked.includes(card.id) })),
-                onLike: (id) => liked.includes(id)
-                    ? setIsLiked(liked.filter(x => x !== id)) : setIsLiked([...liked, id]),
-                onDelete: (id) => setDeleted([...deleted, id])
+                cards, 
+                liked, 
+                deleted,
+                setDeleted,
+                setLiked
             }}>
                 <div className={styles.App}>
-                    <FishCardListContainer />
+                    <Tabs items={[{
+                            id:1,
+                            title: 'Рыбы'
+                        },
+                        {
+                            id:2,
+                            title: 'Избранное'
+                        }]}
+                            defaultTab={1}
+                            onSelect={(id) => setCurrentTab(id)}
+                />  
+                {currentTab === 1 && <FishCardListContainer />}
+                {currentTab === 2 && <FishCardFavoriteContainer/>}
+                    
                 </div>
             </FishCardContext.Provider>
 }
