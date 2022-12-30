@@ -2,6 +2,7 @@ import React from "react";
 import style from "./FishCard.css";
 
 import {DeleteIcon, LikeIcon} from './images';
+
 export const FishCard = ({title, imgUrl, imgAlt, imgTitle, onDelete, onLike, isLiked }) => {
     return (
         <div className={style.FishCard}>
@@ -14,5 +15,5 @@ export const FishCard = ({title, imgUrl, imgAlt, imgTitle, onDelete, onLike, isL
             </div>
             <div className={style.FishCard__footer}>{title}</div>
         </div>
-    )
+    );
 }
