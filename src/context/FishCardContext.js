@@ -1,8 +1,9 @@
-import React
- from "react";
+import React from "react";
 export const FishCardContextInitialValues = {
-    items: [],
-    onDelete: () => {},
-    onLike: () => {}
+    liked: [],
+    deleted: [],
+    cards: [],
+    setDeleted: () => {},
+    setLiked: () => {}
 }
 export const FishCardContext = React.createContext(FishCardContextInitialValues);

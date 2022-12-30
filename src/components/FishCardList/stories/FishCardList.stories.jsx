@@ -7,11 +7,11 @@ export default {
     argTypes: { onDelete: { action: 'clicked' }, onLike: { action: 'clicked' } },
 }
 
-const ListTemplate = ({cards, ...args}) => {
+const ListTemplate = ({cards: items, ...args}) => {
     const [ liked, setIsLiked ] = useState([]);
     const [ deleted, setDeleted ] = useState([]);
     return <FishCardList 
-        cards={cards.filter(card => !deleted.includes(card.id)).map(card => ({...card, isLiked: liked.includes(card.id)}))} 
+        items={items.filter(card => !deleted.includes(card.id)).map(card => ({...card, isLiked: liked.includes(card.id)}))} 
         {...args} 
         onLike={(id) => liked.includes(id) ? setIsLiked(liked.filter(x => x !== id)) : setIsLiked([...liked, id])} 
         onDelete={(id) => setDeleted([...deleted, id])}
@@ -21,7 +21,7 @@ const ListTemplate = ({cards, ...args}) => {
 export const PlayWithList = ListTemplate.bind({});
 
 PlayWithList.args = {
-    cards: [
+    items: [
         {
             id: 1,
             title: 'Crimson Jobfish',
