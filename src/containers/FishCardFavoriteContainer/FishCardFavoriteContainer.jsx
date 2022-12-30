@@ -5,13 +5,11 @@ import { FishCardContext } from "@context";
 
 export const FishCardFavoriteContainer = () => {
    const {
-    cards, 
-    deleted,
-    liked,
+    state
    } = useContext(FishCardContext)
    
-   const items = cards
-        .filter(card => !deleted.includes(card.id) && liked.includes(card.id));
+   const items = state.cards
+        .filter(card => !state.deleted.includes(card.id) && state.liked.includes(card.id));
         
 
     return <FishCardList items={items}/>
