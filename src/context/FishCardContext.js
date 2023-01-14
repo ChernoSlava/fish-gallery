@@ -5,7 +5,9 @@ export const FishCardContextInitialValues = {
         liked: [],
         deleted: [],
         cards: [],
+        currentTab: 1
     },
     dispatch: () => {},
+
 }
 export const FishCardContext = React.createContext(FishCardContextInitialValues);

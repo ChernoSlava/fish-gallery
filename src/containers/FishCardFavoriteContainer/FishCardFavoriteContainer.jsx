@@ -12,5 +12,5 @@ export const FishCardFavoriteContainer = () => {
         .filter(card => !state.deleted.includes(card.id) && state.liked.includes(card.id));
         
 
-    return <FishCardList items={items}/>
+    return state.currentTab === 2 ? <FishCardList items={items}/> : null;
 }

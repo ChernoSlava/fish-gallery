@@ -18,5 +18,5 @@ export const FishCardListContainer = () => {
         const onDelete = (id) => dispatch({ type: 'SET_DELETED', payload: id});
         const onLike = (id) => dispatch({ type: 'SET_LIKED', payload: id});
         
-    return <FishCardList items={items} onDelete={onDelete} onLike={onLike}/>
+    return state.currentTab === 1 ? <FishCardList items={items} onDelete={onDelete} onLike={onLike}/> : null;
 }
