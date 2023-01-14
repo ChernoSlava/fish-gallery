@@ -35,6 +35,13 @@ const FishCardReducer = (state, action) => {
                 cards: payload
             }
         }
+
+        case 'SET_CURRENT_TAB': {
+            return {
+                ...state,
+                currentTab: payload
+            }
+        }
         default: {
             return state;
         }
@@ -44,10 +51,10 @@ const InitialFishCards = {
         liked: [],
         deleted: [],
         cards: [],
+        currentTab: 1,
 }
 export const App = () => {
     const [state, dispatch ] = useReducer(FishCardReducer, InitialFishCards);
-    const [ currentTab, setCurrentTab ] = useState(1);
 
     useEffect(() => {
             fetch("/api/species")
@@ -76,10 +83,10 @@ export const App = () => {
                             title: 'Избранное'
                         }]}
                             defaultTab={1}
-                            onSelect={(id) => setCurrentTab(id)}
+                            onSelect={(id) => dispatch({ type: 'SET_CURRENT_TAB', payload: id})}
                 />  
-                {currentTab === 1 && <FishCardListContainer />}
-                {currentTab === 2 && <FishCardFavoriteContainer/>}
+                <FishCardListContainer />
+                <FishCardFavoriteContainer/>
                     
                 </div>
             </FishCardContext.Provider>
